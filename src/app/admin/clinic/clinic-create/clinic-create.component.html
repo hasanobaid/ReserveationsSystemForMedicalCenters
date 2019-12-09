@@ -1,0 +1,17 @@
+<h1>Clinic Add</h1>
+<div class="row justify-content-around">
+  <div class="col">
+    <form #f="ngForm" (submit)="add_clinic(f)" name="theform">
+      <div class="row  align-items-center">
+        <div class="col">
+          <label>Clinic Name</label>
+          <input type="text" class="form-control" placeholder="Clinic Name" [(ngModel)]="clinic.clinicname"
+                 name="clinicname">
+        </div>
+        <div class="col-md-2" style="margin-top: 1.3em">
+          <button class="btn btn-success btn-block" type="submit">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

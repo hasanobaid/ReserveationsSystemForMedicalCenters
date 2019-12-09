@@ -1,0 +1,224 @@
+<div class="container emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5>
+            {{patient.firstname}} {{patient.lastname}}
+          </h5>
+          <h6>Date of Birth: {{patient.dateofbirth}}</h6>
+          <p class="proile-rating">ID#: <span>{{patient.patientID}}</span></p>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                 aria-selected="true">About</a>
+            </li>
+            <!--<li class="nav-item">-->
+            <!--<a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payments"-->
+            <!--aria-selected="false">Payments</a>-->
+            <!--</li>-->
+            <li class="nav-item">
+              <a class="nav-link" id="family-tab" data-toggle="tab" href="#family" role="tab" aria-controls="family"
+                 aria-selected="false">Family</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-work">
+          <p>side</p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <label>First Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.firstname}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Second Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.secondname}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Third Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.thirdname}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Last Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.lastname}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.email}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Phone</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.phonenumber}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Insuace Company</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.insurancenumber}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Insurance ID</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.insuranceID}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Sub Insurance ID</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.subinsuranceID}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Address</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{patient.address}}</p>
+              </div>
+            </div>
+          </div>
+          <!--Second Tab-->
+          <!--<div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="profile-tab">-->
+          <!--<div class="row">-->
+          <!--<h3>Payments</h3>-->
+          <!--</div>-->
+          <!--<hr>-->
+          <!--<div class="row">-->
+          <!--<table class="paleBlueRows" style="height: 2%; width: 100%;">-->
+          <!--<thead>-->
+          <!--<tr>-->
+          <!--<th>Last Payment Date</th>-->
+          <!--<th>Last Pay Date</th>-->
+          <!--<th>Balance</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+          <!--<tr>-->
+          <!--&lt;!&ndash;                  <td>{{patientPayment.lastpaymentdate}}</td>-->
+          <!--<td>{{patientPayment.lastpaydate}}</td>&ndash;&gt;-->
+          <!--<td>12-12-2018</td>-->
+          <!--<td>12-12-2018</td>-->
+          <!--<td>{{patientPayment.balance}}</td>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+          <!--</table>-->
+          <!--</div>-->
+          <!--<hr>-->
+          <!--<div class="row">-->
+          <!--<div class="col-md-6">-->
+          <!--<label>From</label>-->
+          <!--<p-calendar [(ngModel)]="fromdate"-->
+          <!--[disabledDates]="invalidDates"-->
+          <!--[minDate]="minDate"-->
+          <!--[readonlyInput]="true"-->
+          <!--name="datepickerone"-->
+          <!--(ngModelChange)="onDateChanged()"-->
+          <!--[showIcon]="true">-->
+          <!--</p-calendar>-->
+          <!--</div>-->
+          <!--<div class="col-md-6">-->
+          <!--<label>To</label>-->
+          <!--<p-calendar [(ngModel)]="todate"-->
+          <!--[disabledDates]="invalidDates"-->
+          <!--[minDate]="minDate"-->
+          <!--[readonlyInput]="true"-->
+          <!--name="datepickertwo"-->
+          <!--(ngModelChange)="onDateChanged()"-->
+          <!--[showIcon]="true">-->
+          <!--</p-calendar>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--<hr>-->
+          <!--<div class="row">-->
+          <!--<table class="paleBlueRows" style="width: 100%">-->
+          <!--<thead>-->
+          <!--<tr>-->
+          <!--<th>#</th>-->
+          <!--<th>Employee ID</th>-->
+          <!--<th>Amount</th>-->
+          <!--<th>Pay Date</th>-->
+          <!--<th>Type</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+          <!--<tr *ngFor="let x of patientDetails; let i = index">-->
+          <!--<td>{{i}}</td>-->
+          <!--<td>{{x.empID}}</td>-->
+          <!--<td>{{x.amount}}</td>-->
+          <!--<td>{{x.senddate}}</td>-->
+          <!--<td>{{x.paymenttype}}</td>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+          <!--</table>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--Third Tab-->
+          <div class="tab-pane fade" id="family" role="tabpanel" aria-labelledby="profile-tab">
+            <h3>Family</h3>
+            <div class="row">
+              <table class="paleBlueRows" style="width: 100%; height: 2%;">
+                <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Relationship</th>
+                  <th>ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let x of childs">
+                  <td>{{x.firstname}}</td>
+                  <td>{{x.relation}}</td>
+                  <td>{{x.patientID}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

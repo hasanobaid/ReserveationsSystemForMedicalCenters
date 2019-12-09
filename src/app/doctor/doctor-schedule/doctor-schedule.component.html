@@ -1,0 +1,92 @@
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <label># of appointment: {{appointments.length}}</label>
+    </div>
+    <div class="col">
+      <label for="fromdate">From: </label>
+      <input type="date"
+             id="fromdate"
+             name="fromdate"
+             [(ngModel)]="date"
+             class="form-control"
+             (change)="dateChanged()">
+    </div>
+  </div>
+  <hr>
+  <table id="tablePreview"
+         class="table table-hover table-striped table-bordered"
+         style="background: white;">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>ID</th>
+      <th>PatientID</th>
+      <th>Patient Name</th>
+      <th>Clinic</th>
+      <th>Date</th>
+      <th>From</th>
+      <th>Checked</th>
+      <th>History</th>
+      <th>Done</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let x of filteredAppointment; let i = index">
+      <th scope="row">{{i}}</th>
+      <td>{{x.appID}}</td>
+      <td>{{x.patientID}}</td>
+      <td>{{getPatientName(x.patientID)}}</td>
+      <td>{{getClinicName(x.clinicID)}}</td>
+      <td>{{x.adate}}</td>
+      <td>{{x.slottime}}</td>
+      <td *ngIf="x.checkin == 0">
+        <button type="button"
+                class="btn btn-danger btn-sm"
+                disabled>
+          Check in
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 1">
+        <button type="button"
+                class="btn btn-info btn-sm"
+                disabled>
+          Checked
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 2">
+        <button type="button"
+                class="btn btn-success btn-sm"
+                disabled>
+          Done
+        </button>
+      </td>
+      <td>
+        <button (click)="openHistoryComponent(x.patientID)"
+                class="btn btn-outline-info btn-sm"
+        >
+          Check
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 1">
+        <button type="button"
+                class="btn btn-success btn-sm"
+                (click)=done_checkin(x)
+        >
+          Mark As Done
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 0">
+        <button type="button"
+                class="btn btn-outline-danger btn-sm"
+                disabled
+        >
+          Mark As Done
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--Table-->
+</div>

@@ -1,0 +1,193 @@
+<h1>Add Patient</h1>
+<hr size="30">
+<div class="row justify-content-around">
+  <div class="col-md-10">
+    <form #f="ngForm" (submit)="add_patient(f)" name="theform">
+      <h2>Information</h2>
+      <div class="row">
+        <div class="col">
+          <label>First name</label>
+          <input type="text" class="form-control" placeholder="First name" [(ngModel)]="patient.firstname"
+                 name="firstname">
+        </div>
+        <div class="col">
+          <label>Second name</label>
+          <input type="text" class="form-control" placeholder="Second name" [(ngModel)]="patient.secondname"
+                 name="secondname">
+        </div>
+        <div class="col">
+          <label>Third name</label>
+          <input type="text" class="form-control" placeholder="Third name" [(ngModel)]="patient.thirdname"
+                 name="thirdname">
+        </div>
+        <div class="col">
+          <label>Last name</label>
+          <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="patient.lastname"
+                 name="lastname">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>personal ID </label>
+          <input type="checkbox" name="disableID" #disableID [(ngModel)]="hasID">
+          <input type="text" class="form-control" placeholder="personalID" [(ngModel)]="patient.patientID"
+                 name="personalID" #personalID [disabled]="hasID" (change)="checkValidID()">
+          <p-message
+            severity="error"
+            *ngIf="p.touched && !validID"
+            text="invalid ID"
+          ></p-message>
+        </div>
+        <div class="col">
+          <div class="col">
+            <label>Confirm ID</label>
+            <input type="text" class="form-control" placeholder="Confirm personalID" [(ngModel)]="personalIDMatch"
+                   name="personalIDMatch" #p="ngModel" [disabled]="hasID">
+            <p-message
+              severity="error"
+              *ngIf="p.touched && (patient.patientID != personalIDMatch)"
+              text="does not match"
+            ></p-message>
+          </div>
+        </div>
+        <div class="col">
+          <label>Password</label>
+          <input type="password" class="form-control" placeholder="password" [(ngModel)]="patient.password"
+                 name="password">
+        </div>
+        <div class="col">
+          <label>Date of birth</label>
+          <input type="date" class="form-control" placeholder="" [(ngModel)]="patient.dateofbirth" name="dateofbirth">
+        </div>
+        <div class="col">
+          <label>Gender</label>
+          <select class="custom-select" id="gender" [(ngModel)]="patient.gender" name="gender" #gender>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+      <hr>
+      <h2>Contact</h2>
+      <div class="row">
+        <div class="col">
+          <label>Email</label>
+          <input type="email" class="form-control" placeholder="example@example.com" [(ngModel)]="patient.email"
+                 name="email">
+        </div>
+        <div class="col">
+          <label>Phone number</label>
+          <input type="text" class="form-control" placeholder="phone number" [(ngModel)]="patient.phonenumber"
+                 name="phonenumber">
+        </div>
+        <div class="col">
+          <label>mobile number</label>
+          <input type="text" class="form-control" placeholder="mobile number" [(ngModel)]="patient.mobilenumber"
+                 name="mobilenumber">
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Insurance</h2>
+      <div class="row">
+        <div class="col">
+          <label>Insurance Number</label>
+          <input type="text" class="form-control" placeholder="Insurance Number" [(ngModel)]="patient.insurancenumber"
+                 name="insurancenumber">
+        </div>
+        <div class="col">
+          <label>insurance company</label>
+          <select class="custom-select"
+                  id="insurance_compamy"
+                  [(ngModel)]="insurance.insuranceID"
+                  name="insurancecompany"
+                  #insuranceCompany
+                  (change)="onSelectInsuranceCompany(insuranceCompany.value)"
+          >
+            <option selected>--Select Insurance Company--</option>
+            <option *ngFor="let x of insurances" [value]="[x.insuranceID]">{{x.insurancecompany}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <label>subInsurance Type</label>
+          <select class="custom-select"
+                  id="insurance_type"
+                  [(ngModel)]="subinsurance.subinsuranceID"
+                  name="insurancetype"
+                  #subInsuranceType
+          >
+            <option selected>--Select Insurance Type--</option>
+            <option *ngFor="let x of subincurancess" [value]="[x.subinsuranceID]">{{x.membership}}</option>
+          </select>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Relationship status:</h2>
+      <select class="custom-select"
+              id="familyList" name="familyList"
+              #familyList
+              (change)="familyListType = familyList.value">
+        <option value="single" [(ngModel)]="patient.relation">Single</option>
+        <option value="married" [(ngModel)]="patient.relation">Married</option>
+        <option value="child" [(ngModel)]="patient.relation">Child</option>
+      </select>
+      <div class="row" *ngIf="familyListType == 'child'">
+        <div class="col">
+          <label>Father ID</label>
+          <input type="text" class="form-control" placeholder="Father ID" name="fatherID"
+                 [(ngModel)]="patient.fatherID">
+          <label>Mother ID</label>
+          <input type="text" class="form-control" placeholder="Mother ID" name="motherID"
+                 [(ngModel)]="patient.motherID">
+        </div>
+      </div>
+      <div class="row" *ngIf="familyListType == 'single'">
+      </div>
+      <div class="row" *ngIf="familyListType == 'married'">
+        <div class="col">
+          <label>Married</label>
+          <input type="text" class="form-control" placeholder="Wife ID" name="wifeID"
+                 [(ngModel)]="wifeID" *ngIf="gender.value == 'male'">
+          <input type="text" class="form-control" placeholder="Husband ID" name="husbandID"
+                 [(ngModel)]="husbandID" *ngIf="gender.value == 'female'">
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Address</h2>
+      <div class="row">
+        <div class="col">
+          <label>select city</label>
+          <select class="custom-select"
+                  id="city"
+                  [(ngModel)]="patient.cityID"
+                  name="city"
+                  #selectedCity
+                  (change)="onSelectCity(selectedCity.value)">
+            <option hidden>Select city</option>
+            <option *ngFor="let x of cities" [value]="[x.cityID]">{{x.cityname}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <label>select quantum</label>
+          <select class="custom-select" id="quantum" [(ngModel)]="patient.qID" name="quantom">
+            <option hidden>Select quantum</option>
+            <option *ngFor="let x of quantoms" [value]="[x.qID]">{{x.qname}}</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label> Addresses</label>
+          <input type="text" class="form-control" placeholder="address" [(ngModel)]="patient.address" name="address">
+        </div>
+      </div>
+      <hr>
+      <div class="row" style="margin-bottom: 50px;">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

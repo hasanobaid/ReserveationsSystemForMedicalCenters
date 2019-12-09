@@ -1,0 +1,85 @@
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <input type="text"
+             placeholder="Search"
+             class="form-control"
+             #searchValue
+      >
+    </div>
+    <div class="col">
+      <select class="custom-select" #searchOption>
+        <option hidden>- Search By -</option>
+        <option value="name">Name</option>
+        <option value="id">ID</option>
+        <option value="phonenumber">Phone Number</option>
+      </select>
+    </div>
+    <div class="col">
+      <button type="button"
+              class="btn btn-success"
+              (click)="onSearch(searchValue.value, searchOption.value)"
+      >Search
+      </button>
+      <button type="button" class="btn btn-danger" (click)="clearSearch()">Clear</button>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container bootstrap snippet">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table user-list">
+              <thead>
+              <tr>
+                <th><span>Name</span></th>
+                <th><span>ID</span></th>
+                <th><span>Email</span></th>
+                <th><span>Phone Number</span></th>
+                <th><span>Mobile Number</span></th>
+                <th><span>Date Of Birth</span></th>
+                <th><span>Insurance</span></th>
+                <th><span>&nbsp;</span></th>
+                <th>&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let patient of patients; let i = index">
+                <td>
+                  <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
+                  {{patient.firstname}} {{patient.lastname}}
+                </td>
+                <td>{{patient.patientID}}</td>
+                <td>{{patient.email}}</td>
+                <td>{{patient.phonenumber}}</td>
+                <td>{{patient.mobilenumber}}</td>
+                <td>{{patient.dateofbirth}}</td>
+                <td>{{patient.insuranceID}}</td>
+                <td>
+                  <a [routerLink]="[i]" class="table-link">
+                    <span class="fa-stack">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </a>
+                  <a [routerLink]="[i,'edit']" class="table-link">
+                     <span class="fa-stack">
+                       <i class="fa fa-square fa-stack-2x"></i>
+                       <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                     </span>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

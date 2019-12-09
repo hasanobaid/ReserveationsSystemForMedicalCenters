@@ -1,0 +1,45 @@
+<div role="document" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!--Add body here-->
+      <div class="col">
+        <div class="row">
+          <p-calendar [(ngModel)]="date"
+                      [disabledDates]="invalidDates"
+                      [minDate]="minDate"
+                      [maxDate]="maxDate"
+                      [readonlyInput]="true"
+                      name="datepicker"
+                      (ngModelChange)="setTimeSlots()"
+                      [inline]="true"
+          >
+            <ng-template pTemplate="date" let-date>
+            <span [ngStyle]="{backgroundColor: invalidDates ? '#81C784' : 'inherit'}"
+                  style="border-radius:50%;padding: .25em;width: 1.5em; height:1.75em; display:block;">{{date.day}}</span>
+            </ng-template>
+          </p-calendar>
+        </div>
+        <div class="row">
+          <select class="custom-select"
+                  id="appointment"
+                  name="appointment"
+                  [(ngModel)]="appointment.slottime">
+            <option selected> -- Select Time --</option>
+            <option *ngFor="let x of AllApoin" [disabled]="isNotReserved(x)" [value]="[x.start]">{{x.start}}
+              - {{x.end}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="Update()">Update</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+  </div>
+</div>

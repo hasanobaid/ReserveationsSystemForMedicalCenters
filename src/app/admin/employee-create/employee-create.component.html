@@ -1,0 +1,129 @@
+<h1>Add Employee</h1>
+<hr size="30">
+<div class="row justify-content-around">
+  <div class="col-md-10">
+    <form #f="ngForm" (submit)="add_employee(f)" name="theform">
+      <h2>Information</h2>
+      <div class="row">
+        <div class="col">
+          <label>First name</label>
+          <input type="text" class="form-control" placeholder="First name" [(ngModel)]="employee.firstname"
+                 name="firstname">
+        </div>
+        <div class="col">
+          <label>Second name</label>
+          <input type="text" class="form-control" placeholder="Second name" [(ngModel)]="employee.secondname"
+                 name="secondname">
+        </div>
+        <div class="col">
+          <label>Third name</label>
+          <input type="text" class="form-control" placeholder="third name" [(ngModel)]="employee.thirdname"
+                 name="thirdname">
+        </div>
+        <div class="col">
+          <label>Last name</label>
+          <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="employee.lastname"
+                 name="lastname">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Date of birth</label>
+          <input type="date" class="form-control" placeholder="" [(ngModel)]="employee.dateofbirth" name="dateofbirth">
+        </div>
+        <div class="col">
+          <label>Gender</label>
+          <select class="custom-select" id="gender" [(ngModel)]="employee.gender" name="gender">
+            <option selected value="male">Male</option>
+            <option selected value="female">Female</option>
+          </select>
+        </div>
+        <div class="col">
+          <label>Username</label>
+          <input type="text" class="form-control" placeholder="User Name" [(ngModel)]="employee.username"
+                 name="username">
+        </div>
+        <div class="col">
+          <label>Password</label>
+          <input type="text" class="form-control" placeholder="Password" [(ngModel)]="employee.password"
+                 name="password">
+        </div>
+        <div class="col">
+          <label>empID</label>
+          <input type="text" class="form-control" placeholder="Emp ID" [(ngModel)]="employee.empID"
+                 name="empID">
+        </div>
+      </div>
+      <hr>
+      <h2>Contact</h2>
+      <div class="row">
+        <div class="col">
+          <label>Emergency Number</label>
+          <input type="text" class="form-control" placeholder="Emergency Number" [(ngModel)]="employee.emergencynumber"
+                 name="emergencynumber">
+        </div>
+        <div class="col">
+          <label>Phone Number</label>
+          <input type="text" class="form-control" placeholder="Phone Number" [(ngModel)]="employee.phonenumber"
+                 name="phonenumber">
+        </div>
+        <div class="col">
+          <label>Mobile Number</label>
+          <input type="text" class="form-control" placeholder="05XXXXXXXX" [(ngModel)]="employee.mobilenumber"
+                 name="mobilenumber">
+        </div>
+        <div class="col">
+          <label>Email</label>
+          <input type="email" class="form-control" placeholder="example@example.com" [(ngModel)]="employee.email"
+                 name="email">
+        </div>
+
+      </div>
+      <hr>
+      <h2>Address</h2>
+      <div class="row">
+        <div class="col">
+          <label>select city</label>
+          <select class="custom-select" id="city" [(ngModel)]="employee.cityID" name="city" #selectedCity
+                  (change)="onSelectCity(selectedCity.value)">
+            <option hidden>Select city</option>
+            <option *ngFor="let x of cities" [value]="[x.cityID]">{{x.cityname}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <label>select quantum</label>
+          <select class="custom-select" id="quantum" [(ngModel)]="employee.qID" name="quantom">
+            <option hidden>Select quantum</option>
+            <option *ngFor="let x of quantoms" [value]="[x.qID]">{{x.qname}}</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label> Addresses</label>
+          <input type="text" class="form-control" placeholder="address" [(ngModel)]="employee.address" name="address">
+        </div>
+      </div>
+      <hr>
+      <h2>Job Specification</h2>
+      <div class="row">
+        <div class="col">
+          <label>Job ID</label>
+          <select class="custom-select" id="job" [(ngModel)]="employee.jobID" name="specialist">
+            <option hidden>Select</option>
+            <option *ngFor="let x of jobs" [value]="x.jobID">{{x.jobname}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <label>Specialist ID</label>
+          <select class="custom-select" id="specialist" [(ngModel)]="employee.sID" name="specialist">
+            <option hidden>Select</option>
+            <option *ngFor="let x of specialists" [value]="x.sID">{{x.sname}}</option>
+          </select>
+        </div>
+      </div>
+      <hr>
+      <div class="row" style="margin-bottom: 50px;">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

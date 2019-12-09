@@ -1,0 +1,38 @@
+<div role="document" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+          <div class="ui-inputgroup">
+            <input type="text" pInputText placeholder="price" [(ngModel)]="payment.amount">
+            <span class="ui-inputgroup-addon">₪</span>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <p-radioButton name="group1"
+                         value="Cash"
+                         label="Cash"
+                         [(ngModel)]="payment.paymenttype"
+                         inputId="opt1"></p-radioButton>
+        </div>
+        <div class="ui-g-12">
+          <p-radioButton name="group1"
+                         value="Visa"
+                         label="Visa"
+                         [(ngModel)]="payment.paymenttype"
+                         inputId="opt3"></p-radioButton>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="addPayment()">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <label for="fromdate">Date: </label>
+      <input type="date"
+             id="fromdate"
+             name="fromdate"
+             [(ngModel)]="fromdate"
+             class="form-control"
+             (change)="dateChanged(fromdate)">
+    </div>
+  </div>
+  <hr>
+  <table id="tablePreview"
+         class="table table-hover table-striped table-bordered"
+         style="background: white;">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Clinic</th>
+      <th>Date</th>
+      <th>From</th>
+      <th>Checked</th>
+      <th>Update</th>
+      <th>Cancel</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let x of appointment; let i = index">
+      <th scope="row">{{i}}</th>
+      <td>{{getClinicName(x.clinicID)}}</td>
+      <td>{{x.adate}}</td>
+      <td>{{x.slottime}}</td>
+      <td *ngIf="x.checkin == 0">
+        <button type="button"
+                class="btn btn-danger btn-sm"
+                disabled>
+          Check in
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 1">
+        <button type="button"
+                class="btn btn-info btn-sm"
+                disabled>
+          Checked
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 2">
+        <button type="button"
+                class="btn btn-success btn-sm"
+                disabled>
+          Done
+        </button>
+      </td>
+      <td *ngIf="canUpdate(x.adate)">
+        <button type="button"
+                class="btn btn-info btn-sm"
+                (click)="openUpdateComponent(x)"
+        >
+          Update
+        </button>
+      </td>
+      <td *ngIf="canUpdate(x.adate)">
+        <button type="button"
+                class="btn btn-danger btn-sm"
+                (click)="cancelAppointment(x)"
+        >
+          Cancel
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--Table-->
+</div>

@@ -1,0 +1,99 @@
+<h1>Clinic Details</h1>
+<hr>
+<h2>Clinic Name: {{clinic.clinicname}}</h2>
+<hr>
+<div class="row justify-content-around">
+  <div class="col-md-10">
+    <form (submit)="add_insurance_price(ff)" #ff="ngForm">
+      <div class="row  align-items-center">
+        <div class="col-10">
+          <label>Price</label>
+          <input type="text" class="form-control" id="price" name="price">
+        </div>
+        <div class="col">
+          <label></label>
+          <button class="btn btn-success btn-block" type="submit">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="row justify-content-around">
+  <div class="col-md-10">
+    <form (submit)="add_doctorClinic(f)" #f="ngForm" name="theform">
+      <div class="row  align-items-center">
+        <div class="col-10">
+          <label for="doctorlist">Select Doctor from list</label>
+          <select class="custom-select"
+                  #docList
+                  (change)="selectDoctor(docList.value)"
+                  name="doctorlist"
+                  id="doctorlist">
+            <option *ngFor="let x of doctors"
+                    [value]="[x.empID]">{{x.firstname}} {{x.secondname}} {{x.lastname}} </option>
+          </select>
+        </div>
+        <div class="col">
+          <label></label>
+          <button class="btn btn-success btn-block" type="submit">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="container bootstrap snippet">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table user-list">
+              <thead>
+              <tr>
+                <th><span>Name</span></th>
+                <th><span>Emergency Number</span></th>
+                <th><span>Email</span></th>
+                <th><span>Phone Number</span></th>
+                <th><span>Mobile Number</span></th>
+                <th><span>Date Of Birth</span></th>
+                <th><span>&nbsp;</span></th>
+                <th>&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let empp of doctors; let i = index">
+                <td>
+                  <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
+                  {{empp.firstname}} {{empp.secondname}} {{empp.lastname}}
+                </td>
+                <td>{{empp.emergencynumber}}</td>
+                <td>{{empp.email}}</td>
+                <td>{{empp.phonenumber}}</td>
+                <td>{{empp.mobilenumber}}</td>
+                <td>{{empp.dateofbirth}}
+                </td>
+                <!--<td>-->
+                <!--<a [routerLink]="[i]" class="table-link">-->
+                <!--<span class="fa-stack">-->
+                <!--<i class="fa fa-square fa-stack-2x"></i>-->
+                <!--<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>-->
+                <!--</span>-->
+                <!--</a>-->
+                <!--<a [routerLink]="[i,'edit']" class="table-link">-->
+                <!--<span class="fa-stack">-->
+                <!--<i class="fa fa-square fa-stack-2x"></i>-->
+                <!--<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>-->
+                <!--</span>-->
+                <!--</a>-->
+                <!--</td>-->
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

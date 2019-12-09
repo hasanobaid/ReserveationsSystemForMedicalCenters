@@ -1,0 +1,93 @@
+<h1 style="text-align: center;">Payments List</h1>
+<div class="container bootstrap snippet">
+  <div class="row">
+    <div class="col">
+      <label for="fromdate">From: </label>
+      <input type="date"
+             id="fromdate"
+             name="fromdate"
+             [(ngModel)]="fromdate"
+             class="form-control"
+             (ngModelChange)="dateChanged()">
+    </div>
+    <div class="col">
+      <label for="todate">From: </label>
+      <input type="date"
+             id="todate"
+             name="todate"
+             [(ngModel)]="todate"
+             class="form-control"
+             (ngModelChange)="dateChanged()">
+    </div>
+    <div class="col">
+      <label>Select Patient</label>
+      <select class="custom-select"
+              id="patient"
+              name="patient"
+              #patientValue
+              [(ngModel)]="patient"
+              (change)="onSelectPatient(patientValue.value)">
+        <option selected> -- Patient --</option>
+        <option *ngFor="let x of patients"
+                [value]="[x.patientID]">{{x.firstname}} {{x.secondname}} {{x.lastname}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <label>ID:</label>
+      <input type="text"
+             class="form-control"
+             id="patientID"
+             name="patientID"
+             [(ngModel)]="patient"
+             (change)="onSelectPatient(patientValue.value)"
+             placeholder="Search Patient by ID">
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table user-list" id="tableTable">
+              <thead>
+              <tr>
+                <th><span>#</span></th>
+                <th><span>Patient</span></th>
+                <th><span>Patient ID</span></th>
+                <th><span>Employee</span></th>
+                <th><span>Amount</span></th>
+                <th><span>Send Date</span></th>
+                <th><span>Payment Type</span></th>
+                <th><span>Funds</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let x of details; let i = index">
+                <td>{{i}}</td>
+                <td>{{getPatientName(x.patientID)}}</td>
+                <td>{{x.patientID}}</td>
+                <td>{{getEmployeeName(x.empID)}}</td>
+                <td>{{x.amount}}</td>
+                <td>{{x.senddate}}</td>
+                <td>{{x.paymenttype | uppercase}}</td>
+                <td>
+                  <button (click)="openAddComponent(x.patientID)"
+                          class="btn btn-info btn-sm"
+                  >
+                    Add funds
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <button class="btn btn-outline-info btn-sm" (click)="printTable()">Print Table</button>
+  </div>
+</div>

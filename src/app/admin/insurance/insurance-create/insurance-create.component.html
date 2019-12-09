@@ -1,0 +1,23 @@
+<h1 style="text-align: center">Insurance Companies</h1>
+<form #f="ngForm" (submit)="add_insurance(f)" name="theform">
+  <div class="row">
+    <div class="col">
+      <label for="companyName">Company Name</label>
+      <input type="text" id="companyName" name="companyName"
+             class="form-control"
+             [(ngModel)]="insurancefull.insurancecompany">
+    </div>
+    <div class="col">
+      <label for="membership">Membership</label>
+      <input type="text" id="membership" name="membership" class="form-control" [(ngModel)]="insurancefull.membership">
+    </div>
+    <div class="col">
+      <label for="discount">Discount</label>
+      <input type="text" id="discount" class="form-control" name="discount" [(ngModel)]="insurancefull.discount">
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <button class="btn btn-success btn-block" type="submit">Submit</button>
+  </div>
+</form>

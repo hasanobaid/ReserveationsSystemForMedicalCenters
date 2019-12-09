@@ -1,0 +1,46 @@
+<div class="contianer">
+  <h1>Payments History List</h1>
+  <div class="row">
+    <div class="col">
+      <label>Total Balance </label>
+      <input type="text" class="form-control" [(ngModel)]="totalBalance" disabled>
+    </div>
+    <div class="col">
+      <label>Last Payment Date </label>
+      <input type="text" class="form-control" [(ngModel)]="lastPaymentDate" disabled>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container bootstrap snippet">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table user-list">
+              <thead>
+              <tr>
+                <th><span>#</span></th>
+                <th><span>Amount</span></th>
+                <th><span>Type</span></th>
+                <th><span>Date</span></th>
+                <th><span>Employee Name</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let x of payments; let i = index">
+                <td>{{i}}</td>
+                <td>{{x.amount}}</td>
+                <td>{{x.paymenttype}}</td>
+                <td>{{x.senddate}}</td>
+                <td>{{getEmployeeName(x.empID)}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

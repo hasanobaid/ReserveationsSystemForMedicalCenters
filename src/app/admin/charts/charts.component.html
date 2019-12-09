@@ -1,0 +1,63 @@
+<div class="container">
+  <form>
+    <div class="row">
+      <div class="col-5">
+        <label for="fromdate">From Date:</label>
+        <input type="date" class="form-control" name="fromdate" id="fromdate" [(ngModel)]="fromdate">
+      </div>
+      <div class="col-5">
+        <label for="todate">To Date:</label>
+        <input type="date" class="form-control" name="todate" id="todate" [(ngModel)]="todate">
+      </div>
+      <div class="col" style="margin-top: 1.3em">
+        <button type="submit" class="btn btn-info btn-lg">Filter</button>
+      </div>
+    </div>
+  </form>
+
+  <hr>
+  <div class="row">
+    <div class="col" style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+    <hr>
+    <div class="col" style="display: block">
+      <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"></canvas>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col" style="display: block;">
+      <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"></canvas>
+    </div>
+    <div class="col" style="display: block">
+      <select class="custom-select"
+              id="year"
+              name="year"
+              [(ngModel)]="year"
+              (ngModelChange)="yearChanged()"
+      >
+        <option hidden>Select</option>
+        <option *ngFor="let x of years" [value]="x">{{x}}</option>
+      </select>
+      <canvas baseChart
+              [data]="lineChartData"
+              [legend]="false"
+              [labels]="lineChartLabels"
+              [chartType]="lineChartType"
+      ></canvas>
+    </div>
+  </div>
+</div>

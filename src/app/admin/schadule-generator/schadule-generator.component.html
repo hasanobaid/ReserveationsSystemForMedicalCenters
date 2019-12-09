@@ -1,0 +1,117 @@
+<h1 style="text-align: center;">Schedule Generator</h1>
+<div class="container" style="text-align: center;">
+  <form #f="ngForm" (submit)="onSubmit(f)">
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-6 ui-lg-6">
+        <label for="clinic">Select Clinic</label>
+        <select class="custom-select"
+                id="clinic"
+                name="clinic"
+                #clinicValue
+                (change)="clinicSelected(clinicValue.value)"
+                [(ngModel)]="schedule.clinicID"
+        >
+          <option selected> -- Clinic --</option>
+          <option *ngFor="let x of clinics" [value]="[x.clinicID]">{{x.clinicname}}</option>
+        </select>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-lg-6">
+        <label for="doctor">Select Doctor</label>
+        <select class="custom-select"
+                id="doctor"
+                name="doctor"
+                #doctorValue
+                [(ngModel)]="schedule.empID"
+        >
+          <option selected> -- Doctor --</option>
+          <option *ngFor="let x of doctorsIDs" [value]="[x.empID]">{{x.firstname}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <h3>From Date</h3>
+        <p-calendar [(ngModel)]="schedule.startdate"
+                    [showIcon]="true"
+                    name="fromdate"
+                    dateFormat="dd.mm.yy"
+        ></p-calendar>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <h3>To Date</h3>
+        <p-calendar [(ngModel)]="schedule.enddate"
+                    [showIcon]="true"
+                    name="todate"
+                    dateFormat="dd.mm.yy"
+        ></p-calendar>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <h3>Select Days</h3>
+        <p-multiSelect [options]="days"
+                       [(ngModel)]="selectedDays"
+                       [panelStyle]="{minWidth:'12em'}"
+                       name="daysOfWeek"
+                       [maxSelectedLabels]="7"
+        ></p-multiSelect>
+      </div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <h3>From Time</h3>
+        <p-calendar [(ngModel)]="selectedFromTime"
+                    [timeOnly]="true"
+                    name="fromtime"
+                    hourFormat="24"
+                    stepMinute="15"
+        ></p-calendar>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <h3>To Time</h3>
+        <p-calendar [(ngModel)]="selectedToTime"
+                    [timeOnly]="true"
+                    name="totime"
+                    hourFormat="24"
+                    stepMinute="15"
+        ></p-calendar>
+
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <h3>Slot Time</h3>
+        <p-spinner [(ngModel)]="schedule.slot" [min]="0" [max]="60" [step]="5" name="slottime"></p-spinner>
+
+      </div>
+    </div>
+    <!--<div class="row" *ngIf="false">-->
+    <!--<hr>-->
+    <!--<kendo-scheduler [kendoSchedulerBinding]="events"-->
+    <!--[selectedDate]="selectedDate"-->
+    <!--startTime="07:00"-->
+    <!--style="height: 600px;">-->
+    <!--<kendo-scheduler-day-view>-->
+    <!--</kendo-scheduler-day-view>-->
+
+    <!--<kendo-scheduler-week-view>-->
+    <!--</kendo-scheduler-week-view>-->
+
+    <!--<kendo-scheduler-timeline-view>-->
+    <!--</kendo-scheduler-timeline-view>-->
+
+    <!--<kendo-scheduler-agenda-view>-->
+    <!--</kendo-scheduler-agenda-view>-->
+    <!--</kendo-scheduler>-->
+
+    <!--<hr>-->
+    <!--</div>-->
+    <div class="row" style="margin-bottom: 1em;">
+      <div class="col">
+        <button class="btn btn-primary btn-block" type="button" (click)="onGenerate()">Generate</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-success btn-block" type="submit">Submit</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-danger btn-block" type="reset" (click)="onClear()">Clear</button>
+      </div>
+    </div>
+  </form>
+</div>

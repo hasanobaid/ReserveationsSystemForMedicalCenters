@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">R S M C</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="./">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarPatient" role="button" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
+          Patient
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="patient-list">Patient List</a>
+          <a class="dropdown-item" routerLink="patient-create">Add Patient</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarEmp" role="button" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">
+          Employees
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="emp-list">Employees List</a>
+          <a class="dropdown-item" routerLink="emp-create">Add Employee</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarAppointment" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          Appointments
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="app-list">Appointments List</a>
+          <a class="dropdown-item" routerLink="app-create">Create Appointments</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarSchadule" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          Schedules
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="sch-gen">Schedule Generator</a>
+          <a class="dropdown-item" routerLink="vac-date">Vacation Date</a>
+          <a class="dropdown-item" routerLink="exc-date">Exception Date</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="insurance">Insurance</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="clinics">Clinics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="payments">Payments</a>
+      </li>
+    </ul>
+  </div>
+  <div class="form-inline">
+    <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+
+<!--
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>-->

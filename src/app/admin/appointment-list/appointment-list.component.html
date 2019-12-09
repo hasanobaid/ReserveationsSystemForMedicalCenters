@@ -1,0 +1,100 @@
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <label for="selectedDate">Date: </label>
+      <input type="date"
+             id="selectedDate"
+             name="selectedDate"
+             [(ngModel)]="date"
+             class="form-control"
+             (change)="dateChanged()">
+    </div>
+    <div class="col">
+      <label for="doctor">Select Doctor</label>
+      <select class="custom-select"
+              id="doctor"
+              name="doctor"
+              #doctorValue
+              (change)="doctorSelected(doctorValue.value)"
+              [(ngModel)]="selectedDoctor">
+        <option selected> -- Doctor --</option>
+        <option *ngFor="let x of doctors" [value]="[x.empID]">{{getDoctorName(x.empID)}} [{{x.empID}}]</option>
+      </select>
+    </div>
+  </div>
+  <hr>
+  <table id="tablePreview"
+         class="table table-hover table-striped table-bordered"
+         style="background: white;">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>ID</th>
+      <th>PatientID</th>
+      <th>Clinic</th>
+      <th>Doctor</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Update</th>
+      <th>Checked</th>
+      <th>Amount</th>
+      <th>Payment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let x of filteredAppointment; let i = index">
+      <th scope="row">{{i}}</th>
+      <td>{{x.appID}}</td>
+      <td>{{x.patientID}}</td>
+      <td>{{getClinicName(x.clinicID)}}</td>
+      <td>{{getDoctorName(x.empID)}}</td>
+      <td>{{x.adate}}</td>
+      <td>{{x.slottime}}</td>
+      <td>
+        <button type="button"
+                class="btn btn-info btn-sm"
+                (click)="openUpdateComponent(x)"
+        >
+          Update
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 0">
+        <button type="button"
+                (click)="checkin(x)"
+                class="btn btn-danger btn-sm">
+          Check in
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 1">
+        <button type="button"
+                class="btn btn-info btn-sm"
+                disabled>
+          Checked
+        </button>
+      </td>
+      <td *ngIf="x.checkin == 2">
+        <button type="button"
+                class="btn btn-success btn-sm"
+                disabled>
+          Done
+        </button>
+      </td>
+      <td *ngIf="getPaymentById(x.appID) == 'null'">0</td>
+      <td *ngIf="getPaymentById(x.appID) !== 'null'">{{getPaymentById(x.appID)}}</td>
+      <td>
+        <button (click)="openAddComponent(x.patientID)"
+                class="btn btn-info btn-sm"
+                [disabled]="x.checkin == 0"
+        >
+          Add funds
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="col">
+    <button class="btn btn-outline-info btn-sm" (click)="printTable()">Print Table</button>
+  </div>
+  <!--Table-->
+</div>
